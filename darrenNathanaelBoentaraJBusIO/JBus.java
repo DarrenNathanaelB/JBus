@@ -9,13 +9,9 @@ public class JBus
         System.out.println("Besar Discount : " + getDiscountPercentage(1000,900));
         System.out.println("Besar Harga Discount : " + getDiscountedPrice(1000,10));
         System.out.println("Besar Harga Asli : " + getOriginalPrice(900,10));
-<<<<<<< HEAD
         System.out.println("Besar Persentase Admin Fee : " + getAdminFeePercentage());
         System.out.println("Besar Admin Fee : " + getAdminFee(500));
         System.out.println("Harga Total: " + getTotalPrice(5000,1));
-=======
-        System.out.println("Besar Admin Fee : " + getAdminFeePercentage());
->>>>>>> 741d95d98750e05cfb7dbebbd11e23e3450cb6ac
     }
 
     public static int getBusId()
@@ -65,14 +61,9 @@ public class JBus
             return 0;
         }
         else {
-<<<<<<< HEAD
             float persen = 100 - discountPercentage;
             float diskon = 100 * discountedPrice;
             float hargaAsli = diskon / persen;
-=======
-            float diskon = (discountedPrice / 1000) - discountPercentage;
-            float hargaAsli = diskon + discountedPrice;
->>>>>>> 741d95d98750e05cfb7dbebbd11e23e3450cb6ac
             return (int) hargaAsli;
         }
     }
@@ -80,7 +71,6 @@ public class JBus
     public static float getAdminFeePercentage()
     {
         return (float) 0.05;
-<<<<<<< HEAD
     }
     
     public static int getAdminFee(int price)
@@ -95,7 +85,5 @@ public class JBus
         double admin = total * getAdminFeePercentage();
         double fixTotal = total + admin;
         return (int) fixTotal;
-=======
->>>>>>> 741d95d98750e05cfb7dbebbd11e23e3450cb6ac
     }
 }

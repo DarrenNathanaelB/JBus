@@ -2,11 +2,8 @@
 comment0.target=JBus
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
-<<<<<<< HEAD
 comment10.params=price\ numberOfSeat
 comment10.target=int\ getTotalPrice(int,\ int)
-=======
->>>>>>> 741d95d98750e05cfb7dbebbd11e23e3450cb6ac
 comment2.params=
 comment2.target=int\ getBusId()
 comment3.params=
@@ -21,10 +18,6 @@ comment7.params=discountedPrice\ discountPercentage
 comment7.target=int\ getOriginalPrice(int,\ float)
 comment8.params=
 comment8.target=float\ getAdminFeePercentage()
-<<<<<<< HEAD
 comment9.params=price
 comment9.target=int\ getAdminFee(int)
 numComments=11
-=======
-numComments=9
->>>>>>> 741d95d98750e05cfb7dbebbd11e23e3450cb6ac
