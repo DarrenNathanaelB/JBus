@@ -23,7 +23,29 @@ public class Price
     public Price (double price, double rebate)
     {
         this.price = price;
-        this.rebate = discount; // seharusnya rebate(?) 
+        this.rebate = rebate;
         this.discount = 0;
+    }
+    
+    private double getDiscountedPrice()
+    {
+        if (this.discount >= 100){
+            return 0.0;
+        }
+        
+        else {
+            return ((double)(100 - this.discount) / 100) * this.price;
+        }
+    }
+    
+    private double getRebatedPrice()
+    {
+        if (this.rebate > this.price){
+            return 0;
+        }
+        
+        else {
+            return this.price - this.rebate;
+        }
     }
 }

@@ -3,18 +3,21 @@ package darrenNathanaelBoentaraJBusIO;
 public class JBus
 {
     public static void main(String[] args){
-        System.out.println("Bus ID : " + getBusId());
-        System.out.println("Nama Bus : " + getBusName());
-        System.out.println("Terdapat Discount : " + isDiscount());
-        System.out.println("Besar Discount : " + getDiscountPercentage(1000,900));
-        System.out.println("Besar Harga Discount : " + getDiscountedPrice(1000,10));
-        System.out.println("Besar Harga Asli : " + getOriginalPrice(900,10));
-        System.out.println("Besar Persentase Admin Fee : " + getAdminFeePercentage());
-        System.out.println("Besar Admin Fee : " + getAdminFee(500));
-        System.out.println("Harga Total: " + getTotalPrice(5000,1));
+        Bus testBus = createBus();
+        
+        System.out.println(testBus.name);
+        System.out.println(testBus.facility);
+        System.out.println(testBus.price.price);
+        System.out.println(testBus.capacity);
     }
 
-    public static int getBusId()
+    public static Bus createBus(){
+        Price price = new Price(750000, 5);
+        Bus bus = new Bus("Netlab Bus", Facility.LUNCH, price, 25);
+        return bus;
+    }
+    
+    /*** public static int getBusId()
     {
         return 0;
     }
@@ -85,5 +88,5 @@ public class JBus
         double admin = total * getAdminFeePercentage();
         double fixTotal = total + admin;
         return (int) fixTotal;
-    }
+    }***/
 }
