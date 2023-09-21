@@ -11,7 +11,7 @@ public class JBus
         System.out.println(testBus.capacity);**/
         
         Price tesPrice = new Price(200);
-        Voucher tes = new Voucher("halo", 200, Type.REBATE, 150, 10);
+        Voucher tes = new Voucher(1,"halo", 200, Type.REBATE, 150, 10);
 
         System.out.println(tes.name);
         System.out.println(tes.canApply(tesPrice));
