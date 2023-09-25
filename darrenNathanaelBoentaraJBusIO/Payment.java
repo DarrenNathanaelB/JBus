@@ -22,9 +22,9 @@ public class Payment extends Invoice
         this.busSeat = busSeat;
     }
     
-    public String print()
+    public String toString()
     {
-        return "Id: " + id +" Buyer Id: " + buyerId + " Renter Id: " + renterId + " time: "+ time + " Bus Id: " + busId + " date: " + departureDate + " seat: " + busSeat;
+        return "Id: " + this.id +" Buyer Id: " + this.buyerId + " Renter Id: " + this.renterId + " time: "+ this.time + " Bus Id: " + this.busId + " date: " + this.departureDate + " seat: " + this.busSeat;
     }
     
     public int getBusId()

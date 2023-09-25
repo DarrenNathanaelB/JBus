@@ -30,7 +30,7 @@ public class Renter extends Serializable
        this.address = "";
     }
     
-    public Renter (int id, String companyName,int phonneNumber, String address)
+    public Renter (int id, String companyName,int phoneNumber, String address)
     {
        super(id);
        this.companyName = companyName;
