@@ -2,6 +2,14 @@
 comment0.target=Bus
 comment1.params=id\ name\ facility\ price\ capacity\ busType\ city\ departure\ arrival
 comment1.target=Bus(int,\ java.lang.String,\ Facility,\ Price,\ int,\ BusType,\ City,\ Station,\ Station)
-comment2.params=
-comment2.target=java.lang.String\ toString()
-numComments=3
+comment2.params=calendar
+comment2.target=void\ addSchedule(java.util.Calendar)
+comment3.params=schedule
+comment3.target=void\ printSchedule(Schedule)
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=
+comment5.target=java.lang.Object\ write()
+comment6.params=content
+comment6.target=boolean\ read(java.lang.String)
+numComments=7
