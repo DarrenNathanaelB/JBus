@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 
 public class Bus extends Serializable implements FileParser
 {
@@ -31,15 +32,8 @@ public class Bus extends Serializable implements FileParser
         this.arrival = arrival;
     }
     
-    public void addSchedule (Calendar calendar){
-        Schedule newSched = new Schedule(calendar, capacity);
-        schedules.add(newSched);
-    }
-    
-    public void printSchedule(Schedule schedule){
-        SimpleDateFormat format = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss");
-        System.out.println(format.format(schedule.departureSchedule.getTime()));
-        System.out.println(schedule.seatAvailability);
+    public void addSchedule(Timestamp schedule) { 
+        schedules.add(new Schedule(schedule, this.capacity));
     }
     
     public String toString()

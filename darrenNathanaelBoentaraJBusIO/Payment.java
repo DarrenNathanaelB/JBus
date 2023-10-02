@@ -2,26 +2,27 @@ package darrenNathanaelBoentaraJBusIO;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 
 public class Payment extends Invoice
 {
     private int busId;
-    public Calendar departureDate;
+    public Timestamp departureDate;
     public String busSeat;
 
-    public Payment(int id, int buyerId, int renterId, int busId, String busSeat)
+    public Payment(int id, int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate)
     {
         super(id, buyerId, renterId);
         this.busId = busId;
-        this.departureDate = Calendar.getInstance();
+        this.departureDate = departureDate;
         this.busSeat = busSeat;
     }
 
-    public Payment(int id, Account buyer, Renter renter, int busId, String busSeat)
+    public Payment(int id, Account buyer, Renter renter, int busId, String busSeat, Timestamp departureDate)
     {
         super(id, buyer, renter);
         this.busId = busId;
-        this.departureDate = Calendar.getInstance();
+        this.departureDate = departureDate;
         this.busSeat = busSeat;
     }
     
@@ -35,9 +36,31 @@ public class Payment extends Invoice
         return busId;
     }
     
+    public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus)
+    {
+        for (Schedule schedule : bus.schedules) {
+            if (schedule.departureSchedule.equals(departureSchedule)){
+                return schedule.isSeatAvailable(seat);
+            }
+        }
+        return false;
+    }
+    
+    public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus)
+    {
+        if (isAvailable(departureSchedule, seat, bus)){
+            for (Schedule schedule : bus.schedules){
+                if (schedule.departureSchedule.equals(departureSchedule)){
+                    schedule.bookSeat(seat);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     public String getDepartureInfo()
     {
-        departureDate.add(Calendar.DAY_OF_MONTH, 2);
         SimpleDateFormat SDFormat
             = new SimpleDateFormat("dd MMMM yyyy, HH:mm:ss");
         String departDate = SDFormat.format(departureDate.getTime());
