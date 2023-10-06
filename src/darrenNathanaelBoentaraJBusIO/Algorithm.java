@@ -71,7 +71,7 @@ public class Algorithm {
         while (iterator.hasNext()) {
             T current = iterator.next();
             if (pred.predicate(current))
-                return counter++;
+                counter++;
         }
         return counter;
     }
