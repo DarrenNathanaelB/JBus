@@ -8,7 +8,6 @@ public class Station extends Serializable
     
     public Station(int id, String stationName, City city, String address)
     {
-        super(id);
         this.stationName = stationName;
         this.city = city;
         this.address = address;
