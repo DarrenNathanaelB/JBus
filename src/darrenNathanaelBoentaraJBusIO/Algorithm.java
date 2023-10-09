@@ -5,8 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 public class Algorithm {
+    private Algorithm(){
+
+    }
+
     // exists
-    public static <T> boolean exists(T[] array, T value) {
+    /*public static <T> boolean exists(T[] array, T value) {
         final Iterator<T> it = Arrays.stream(array).iterator();
         return exists(it, value);
     }
@@ -145,5 +149,38 @@ public class Algorithm {
                 isiList.add(current);
         }
         return isiList;
+    }*/
+    // paginate
+    public static <T> List<T> paginate(T[] array, int page, int pageSize, Predicate<T> pred){
+        final Iterator<T> it = Arrays.stream(array).iterator();
+        return paginate(it, page, pageSize, pred);
+    }
+
+    public static <T> List<T> paginate(Iterable<T> iterable, int page, int pageSize, Predicate<T> pred){
+        final Iterator<T> it = iterable.iterator();
+        return paginate(it, page, pageSize, pred);
+    }
+
+    public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred){
+        if (page < 0 || pageSize <= 0) {
+            throw new IllegalArgumentException("Page and pageSize should be positive values.");
+        }
+
+        int startIndex = page * pageSize;
+        int endIndex = (page + 1) * pageSize;
+        List<T> resultList = new ArrayList<>();
+
+        int count = 0;
+
+        while (count < endIndex && iterator.hasNext()) {
+            T current = iterator.next();
+            if (pred.predicate(current)) {
+                if (count >= startIndex) {
+                    resultList.add(current);
+                }
+                count++;
+            }
+        }
+        return resultList;
     }
 }

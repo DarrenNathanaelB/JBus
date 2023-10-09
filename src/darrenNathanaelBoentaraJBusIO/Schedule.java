@@ -1,6 +1,7 @@
 package darrenNathanaelBoentaraJBusIO;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.text.SimpleDateFormat;
@@ -35,12 +36,31 @@ public class Schedule
     {
         if (seatAvailability.containsKey(seat)) {
             return seatAvailability.get(seat);
-        } 
+        }
         else {
             return false;
         }
     }
-    
+
+    public boolean isSeatAvailable(List<String> seats)
+    {
+        for (String seat : seats){
+            if (!seatAvailability.get(seat) || !seatAvailability.containsKey(seat)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void bookSeat(List<String> seats)
+    {
+        for (String seat : seats) {
+            if (seatAvailability.containsKey(seat)) {
+                seatAvailability.put(seat, false);
+            }
+        }
+    }
+
     public void printSchedule(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy HH:mm:ss");
         String formattedDepartureSchedule = dateFormat.format(this.departureSchedule.getTime());
@@ -64,5 +84,12 @@ public class Schedule
             currentSeat++;
         }
         System.out.println("\n");
+    }
+    @Override
+    public String toString() {
+        int totalSeats = seatAvailability.size();
+        long bookedSeats = seatAvailability.values().stream().filter(b -> !b).count();
+        return "Schedule: " + departureSchedule +
+                "\nOccupied: " + bookedSeats + "/" + totalSeats;
     }
 }
