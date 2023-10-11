@@ -1,11 +1,34 @@
 package darrenNathanaelBoentaraJBusIO;
+
 import java.util.*;
 import java.sql.Timestamp;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 
 public class JBus
 {
     public static void main(String[] args) {
-        // PT Modul 5
+        // TP Modul 6
+        String filepath = "C:\\Users\\LENOVO\\Documents\\Kuliah\\Semester 3\\Prak OOP\\JBus\\JBus\\data\\station.json";
+        Gson gson = new Gson();
+
+        try {
+            BufferedReader buffer = new BufferedReader(new FileReader(filepath));
+            List<Station> stationjson = gson.fromJson(buffer, new TypeToken<List<Station>>() {
+            }.getType());
+            stationjson.forEach(e -> System.out.println(e.toString()));
+            System.out.println();
+            buffer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+        /*// PT Modul 5
         // Tes Pagination
         Bus b = createBus();
         List<Timestamp> listOfSchedules = new ArrayList<>();
@@ -45,7 +68,7 @@ public class JBus
         System.out.println(Payment.makeBooking(t3, "IO01", b)? msgSuccess : msgFailed);
         // check if the data changed
         System.out.println("\nUpdated Schedule");
-        Algorithm.paginate(b.schedules, 0, 4, t-> true).forEach(System.out::println);
+        Algorithm.paginate(b.schedules, 0, 4, t-> true).forEach(System.out::println);*/
 
         /*Integer[] numbers = {18, 10, 22, 43, 18, 67, 12, 11, 88, 22, 18};
         System.out.println("Number "+Arrays.toString(numbers));
@@ -97,11 +120,11 @@ public class JBus
         System.out.println(integerAbove);*/
     }
 
-    public static Bus createBus() {
+    /*public static Bus createBus() {
         Price price = new Price(750000, 5);
         Bus bus = new Bus(1, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
         return bus;
-    }
+    }*/
 
         /**Bus testBus = createBus();
         
@@ -216,7 +239,7 @@ public class JBus
         Bus bus = new Bus(1, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
         return bus;
     }**/
-}
+
 
 
     /**public static Bus createBus(){
