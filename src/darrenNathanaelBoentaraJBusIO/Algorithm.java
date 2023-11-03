@@ -10,7 +10,7 @@ public class Algorithm {
     }
 
     // exists
-    /*public static <T> boolean exists(T[] array, T value) {
+    public static <T> boolean exists(T[] array, T value) {
         final Iterator<T> it = Arrays.stream(array).iterator();
         return exists(it, value);
     }
@@ -149,7 +149,7 @@ public class Algorithm {
                 isiList.add(current);
         }
         return isiList;
-    }*/
+    }
     // paginate
     public static <T> List<T> paginate(T[] array, int page, int pageSize, Predicate<T> pred){
         final Iterator<T> it = Arrays.stream(array).iterator();

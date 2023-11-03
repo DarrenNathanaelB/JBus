@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
 
-public class Bus extends Serializable implements FileParser
+public class Bus extends Serializable
 {
     public int capacity;
     public Facility facility;
@@ -30,23 +30,29 @@ public class Bus extends Serializable implements FileParser
         this.departure = departure;
         this.arrival = arrival;
     }
-    
-    public void addSchedule(Timestamp schedule) { 
-        schedules.add(new Schedule(schedule, this.capacity));
+    public void addSchedule(Timestamp schedule) {
+        try {
+            for (Schedule existingSchedule : schedules) {
+                if (existingSchedule.departureSchedule.equals(schedule)) {
+                    System.out.println("Jadwal Yang Dimasukkan Duplikat!");
+                    return;
+                }
+            }
+            schedules.add(new Schedule(schedule, this.capacity));
+        } catch (Exception e) {
+            System.out.println("Ditemukan Error Ketika Menambahkan Jadwal: " + e.getMessage());
+        }
     }
-    
     public String toString()
     {
         return "Id: " + this.id +", Name: " + this.name +", Facility: " + this.facility +
         ", " + this.price +"Capacity: " + this.capacity + ", Bus Type: " + this.busType +
         ", City: " + this.city +"\nDeparture: " + this.departure +"\nArrival: " + this.arrival +"\n"; 
     }
-    
-    @Override
+
     public Object write(){
         return this;
     }
-    @Override
     public boolean read(String content){
         return true;
     }

@@ -1,6 +1,6 @@
 package darrenNathanaelBoentaraJBusIO;
 
-public class Account extends Serializable implements FileParser
+public class Account extends Serializable
 {
     public String email;
     public String name;
@@ -18,11 +18,10 @@ public class Account extends Serializable implements FileParser
         return "Id: " + this.id +", Name: " + this.name +", Email: " + this.email +
         ", Password: " + this.password +"\n"; 
     }
-    @Override
+
     public Object write(){
         return this;
     }
-    @Override
     public boolean read(String content){
         return true;
     }

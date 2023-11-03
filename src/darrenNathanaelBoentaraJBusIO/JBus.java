@@ -1,18 +1,11 @@
 package darrenNathanaelBoentaraJBusIO;
 
-import java.util.*;
-import java.sql.Timestamp;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
-import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 
 public class JBus
 {
     public static void main(String[] args) {
-        // TP Modul 6
+        /*// TP Modul 6
         String filepath = "C:\\Users\\LENOVO\\Documents\\Kuliah\\Semester 3\\Prak OOP\\JBus\\JBus\\data\\station.json";
         Gson gson = new Gson();
 
@@ -25,7 +18,47 @@ public class JBus
             buffer.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+        try {
+            String filepath = "C:\\Users\\LENOVO\\Documents\\Kuliah\\Semester 3\\Prak OOP\\JBus\\JBus\\data\\buses_CS.json";
+            JsonTable<Bus> busList = new JsonTable<>(Bus.class,filepath);
+            List<Bus> filteredBus =
+                    filterByDepartureAndArrival(busList, City.JAKARTA, City.SURABAYA, 0, 3);
+            filteredBus.forEach(bus -> System.out.println(bus.toString()));
         }
+        catch (Throwable t){
+            t.printStackTrace();
+        }
+    }
+
+    public static List<Bus> filterByDeparture(List<Bus> buses, City departure, int page , int pageSize){
+        Predicate<Bus> filterPredicate = bus -> bus.departure.city == departure;
+        List<Bus> filteredBuses = Algorithm.collect(buses, filterPredicate);
+        List<Bus> paginatedBuses = Algorithm.paginate(filteredBuses, page, pageSize, bus -> true);
+
+        return paginatedBuses;
+    }
+
+    public static List<Bus> filterByPrice(List<Bus> buses, int min, int max){
+        Predicate<Bus> filterPredicate = bus -> bus.price.price >= min && bus.price.price <= max;
+        List<Bus> filteredBuses = Algorithm.collect(buses, filterPredicate);
+
+        return filteredBuses;
+    }
+
+    public static List<Bus> filterBusId(List<Bus> buses, int id){
+        Predicate<Bus> filterPredicate = bus -> bus.id == id;
+        List<Bus> filteredBuses = Algorithm.collect(buses, filterPredicate);
+
+        return filteredBuses;
+    }
+
+    public static List<Bus> filterByDepartureAndArrival(List<Bus> buses, City departure, City arrival, int page , int pageSize){
+        Predicate<Bus> filterPredicate = bus -> bus.departure.city == departure && bus.arrival.city == arrival;
+        List<Bus> filteredBuses = Algorithm.collect(buses, filterPredicate);
+        List<Bus> paginatedBuses = Algorithm.paginate(filteredBuses, page, pageSize, bus -> true);
+
+        return paginatedBuses;
     }
 
         /*// PT Modul 5

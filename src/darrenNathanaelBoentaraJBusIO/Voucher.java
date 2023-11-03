@@ -1,6 +1,6 @@
 package darrenNathanaelBoentaraJBusIO;
 
-public class Voucher extends Serializable implements FileParser
+public class Voucher extends Serializable
 {
     public String name;
     private boolean used;
@@ -55,11 +55,10 @@ public class Voucher extends Serializable implements FileParser
                 }
         }
     }
-    @Override
     public Object write(){
         return this;
     }
-    @Override
+
     public boolean read(String content){
         return true;
     }
