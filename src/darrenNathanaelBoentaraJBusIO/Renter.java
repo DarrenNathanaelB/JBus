@@ -48,6 +48,6 @@ public class Renter extends Serializable
             Matcher nameMatch = namePat.matcher(this.companyName);
             Pattern phonePat = Pattern.compile(REGEX_PHONE);
             Matcher phoneMatch = phonePat.matcher(String.valueOf(phoneNumber));
-            return phoneMatch.find() && nameMatch.matches());
+            return phoneMatch.find() && nameMatch.find();
     }
 }
