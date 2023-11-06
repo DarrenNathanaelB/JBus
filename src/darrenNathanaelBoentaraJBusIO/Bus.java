@@ -17,7 +17,7 @@ public class Bus extends Serializable
     public City city;
     public List<Schedule> schedules;
 
-    public Bus(int id, String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival)
+    public Bus(String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival)
     {
         this.capacity = capacity;
         this.facility = facility;
