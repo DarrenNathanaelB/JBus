@@ -1,5 +1,7 @@
 package com.darrenNathanaelBoentaraJBusIO;
 
+import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
+
 public class Review extends Serializable
 {
     public String date;

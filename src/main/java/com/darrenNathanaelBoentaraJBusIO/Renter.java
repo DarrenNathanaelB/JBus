@@ -1,5 +1,7 @@
 package com.darrenNathanaelBoentaraJBusIO;
 
+import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

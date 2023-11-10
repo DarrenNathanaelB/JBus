@@ -2,14 +2,19 @@ package com.darrenNathanaelBoentaraJBusIO;
 
 import java.sql.Timestamp;
 import java.util.List;
+
+import com.darrenNathanaelBoentaraJBusIO.dbjson.JsonDBEngine;
+import com.darrenNathanaelBoentaraJBusIO.dbjson.JsonTable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JBus
-{
+public class JBus {
     public static void main(String[] args) throws InterruptedException {
+        JsonDBEngine.Run(JBus.class);
         SpringApplication.run(JBus.class, args);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
+        //SpringApplication.run(JBus.class, args);
         /*// TP Modul 6
         String filepath = "C:\\Users\\LENOVO\\Documents\\Kuliah\\Semester 3\\Prak OOP\\JBus\\JBus\\data\\station.json";
         Gson gson = new Gson();
@@ -25,7 +30,7 @@ public class JBus
             e.printStackTrace();
         }*/
 
-        Bus bus = createBus();
+        /*Bus bus = createBus();
         bus.schedules.forEach(Schedule::printSchedule);
         for (int i = 0; i < 10; i++) {
             BookingThread thread = new BookingThread("Thread " + i, bus,
@@ -87,7 +92,7 @@ public class JBus
         List<Bus> paginatedBuses = Algorithm.paginate(filteredBuses, page, pageSize, bus -> true);
 
         return paginatedBuses;
-    }
+    }*/
 
         /*// PT Modul 5
         // Tes Pagination
@@ -180,6 +185,7 @@ public class JBus
         System.out.println("Above 43");
         System.out.println(integerAbove);*/
     }
+}
 
     /*public static Bus createBus() {
         Price price = new Price(750000, 5);

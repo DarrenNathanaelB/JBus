@@ -1,8 +1,8 @@
 package com.darrenNathanaelBoentaraJBusIO;
+import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
+
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
 
 public class Bus extends Serializable

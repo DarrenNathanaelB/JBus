@@ -1,6 +1,7 @@
 package com.darrenNathanaelBoentaraJBusIO;
 
-import java.util.Calendar;
+import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
+
 import java.sql.Timestamp;
 
 public class Invoice extends Serializable
