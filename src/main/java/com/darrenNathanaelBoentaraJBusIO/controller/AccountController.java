@@ -28,7 +28,6 @@ public class AccountController implements BasicGetController<Account>
     @GetMapping
     String index() { return "account page"; }
 
-    @PostMapping("/register")
     BaseResponse<Account> register
             (
                     @RequestParam String name,
