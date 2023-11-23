@@ -22,7 +22,7 @@ public class Invoice extends Serializable
     public BusRating rating;
     public PaymentStatus status;
     
-    protected Invoice(int id, int buyerId, int renterId)
+    protected Invoice(int buyerId, int renterId)
     {
        this.buyerId = buyerId;
        this.renterId = renterId;
@@ -31,7 +31,7 @@ public class Invoice extends Serializable
        this.status = PaymentStatus.WAITING;
     }
 
-    public Invoice(int id, Account buyer, Renter renter)
+    public Invoice(Account buyer, Renter renter)
     {
         this.buyerId = buyer.id;
         this.renterId = renter.id;

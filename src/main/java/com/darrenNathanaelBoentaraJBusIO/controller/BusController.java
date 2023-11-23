@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Bus")
+@RequestMapping("/bus")
 public class BusController implements BasicGetController<Bus>{
     @JsonAutowired(value = Bus.class, filepath = "src\\main\\java\\com\\darrenNathanaelBoentaraJBusIO\\json\\bus_db.json")
     public static JsonTable<Bus> busTable;
@@ -25,10 +26,14 @@ public class BusController implements BasicGetController<Bus>{
             @RequestParam int busId,
             @RequestParam String time
     ){
-        /*try{
-            Bus bus1 = Algorithm.<Bus>find(busTable, x -> b.id == busId);
-        }*/
-        return null;
+        try{
+            Bus bus1 = Algorithm.<Bus>find(busTable, x -> x.id == busId);
+            bus1.addSchedule(Timestamp.valueOf(time));
+            return new BaseResponse<>(true, "Jadwal Berhasil Ditambahkan", bus1);
+        }
+        catch(Exception e){
+            return new BaseResponse<>(false, "Jadwal Gagal Ditambahkan", null);
+        }
     }
 
     @PostMapping("/create")

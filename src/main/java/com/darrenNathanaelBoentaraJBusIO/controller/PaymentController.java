@@ -12,7 +12,7 @@ import static com.darrenNathanaelBoentaraJBusIO.Algorithm.exists;
 import static com.darrenNathanaelBoentaraJBusIO.Algorithm.find;
 
 @RestController
-@RequestMapping("/Payment")
+@RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
     @JsonAutowired(value = Payment.class, filepath = "src\\main\\java\\com\\darrenNathanaelBoentaraJBusIO\\json\\payment.json")
     public static JsonTable<Payment> paymentTable;
