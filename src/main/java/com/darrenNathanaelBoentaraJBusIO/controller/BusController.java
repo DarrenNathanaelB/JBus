@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RestController
@@ -26,14 +27,25 @@ public class BusController implements BasicGetController<Bus>{
             @RequestParam int busId,
             @RequestParam String time
     ){
-        try{
-            Bus bus1 = Algorithm.<Bus>find(busTable, x -> x.id == busId);
-            bus1.addSchedule(Timestamp.valueOf(time));
-            return new BaseResponse<>(true, "Jadwal Berhasil Ditambahkan", bus1);
+        Predicate<Bus> s = (val) -> val.id == busId;
+        Bus tmp = Algorithm.find(busTable,s);
+        if (tmp != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy HH:mm:ss");
+            Timestamp departureDate = Timestamp.valueOf(time);
+            tmp.addSchedule(departureDate);
+            return new BaseResponse<>(true, "Berhasil addSchedule", tmp);
+            /*
+            try {
+                Date date = dateFormat.parse(time);
+                Timestamp departureDate = new Timestamp(date.getTime());
+                tmp.addSchedule(departureDate);
+                return new BaseResponse<>(true, "Berhasil addSchedule", tmp);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            */
         }
-        catch(Exception e){
-            return new BaseResponse<>(false, "Jadwal Gagal Ditambahkan", null);
-        }
+        return new BaseResponse<>(false, "Gagal addSchedule", null);
     }
 
     @PostMapping("/create")

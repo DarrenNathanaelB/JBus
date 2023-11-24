@@ -32,7 +32,6 @@ public class PaymentController implements BasicGetController<Payment> {
                 payment.status = Invoice.PaymentStatus.WAITING;
                 paymentTable.add(payment);
                 return new BaseResponse<>(true, "Berhasil Melakukan Booking", payment);
-
             }
             else
                 return new BaseResponse<>(false, "Gagal Melakukan Booking", null);
