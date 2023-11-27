@@ -3,10 +3,7 @@ package com.darrenNathanaelBoentaraJBusIO.controller;
 import com.darrenNathanaelBoentaraJBusIO.*;
 import com.darrenNathanaelBoentaraJBusIO.dbjson.JsonAutowired;
 import com.darrenNathanaelBoentaraJBusIO.dbjson.JsonTable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -73,4 +70,9 @@ public class BusController implements BasicGetController<Bus>{
             return new BaseResponse<>(false, "Gagal Dibuat Karena Tidak Menemukan Account Dengan ID Yang Sesuai", null);
         } return new BaseResponse<>(false, "Gagal Dibuat karena Tidak Terdapat ID Departure atau Arrival", null);
     }
+
+    @GetMapping("/getMyBus")
+    public List<Bus> getMyBus(@RequestParam int accountId) {
+        return Algorithm.<Bus>collect(getJsonTable(),
+                b->b.accountId==accountId);}
 }
