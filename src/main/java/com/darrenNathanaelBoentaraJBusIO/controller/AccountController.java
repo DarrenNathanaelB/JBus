@@ -15,6 +15,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+/**.
+ * This class is used to control the /account request from the client
+ * @author Darren Nathanael
+ * @see Account
+ */
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
@@ -22,12 +27,19 @@ public class AccountController implements BasicGetController<Account>
     @JsonAutowired(value = Account.class, filepath = "src\\main\\java\\com\\darrenNathanaelBoentaraJBusIO\\json\\account_db.json")
     public static JsonTable<Account> accountTable;
 
+    /**
+     * Method that is used t0 get the table of the accounts
+     */
     public JsonTable<Account> getJsonTable(){
         return accountTable;
     }
+
     @GetMapping
     String index() { return "account page"; }
 
+    /**
+     * Method that is used to register accounts
+     */
     @PostMapping("/register")
     BaseResponse<Account> register
             (
@@ -72,6 +84,9 @@ public class AccountController implements BasicGetController<Account>
         return new BaseResponse<>(false, "Gagal register", null);
     }
 
+    /**
+     * Method that is used to login to the application with your account
+     */
     @PostMapping("/login")
     BaseResponse<Account> login
             (
@@ -101,6 +116,9 @@ public class AccountController implements BasicGetController<Account>
         return new BaseResponse <>(false, "Gagal login", null);
     }
 
+    /**
+     * Method that is used to register the renter of the bus
+     */
     @PostMapping ("/{id}/registerRenter")
     BaseResponse<Renter> registerRenter
             (
@@ -118,6 +136,9 @@ public class AccountController implements BasicGetController<Account>
         return new BaseResponse <>(false, "Gagal register renter", null);
     }
 
+    /**
+     * Method that is used to handle topup for the account
+     */
     @PostMapping("/{id}/topUp")
     BaseResponse<Double> topUp
             (

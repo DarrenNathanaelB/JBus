@@ -2,6 +2,11 @@ package com.darrenNathanaelBoentaraJBusIO;
 
 import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
 
+/**
+ * This class is used to store the review of the bus
+ * @author Darren Nathanael
+ * @see Serializable
+ */
 public class Review extends Serializable
 {
     public String date;

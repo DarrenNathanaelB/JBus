@@ -4,13 +4,24 @@ import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
 
 import java.sql.Timestamp;
 
+/**
+ * This class is used to store the invoice information.
+ * @author Darren Nathanael
+ * @see Serializable
+ */
 public class Invoice extends Serializable
 {
+    /**
+     * Enum for Bus Rating
+     */
     public enum BusRating
     {
     NONE, NEUTRAL, GOOD, BAD
     }
-    
+
+    /**
+     * Enum for Payment Status
+     */
     public enum PaymentStatus
     {
     FAILED, WAITING, SUCCESS
@@ -21,7 +32,12 @@ public class Invoice extends Serializable
     public int renterId;
     public BusRating rating;
     public PaymentStatus status;
-    
+
+    /**
+     * Invoice Constructor
+     * @param buyerId id of the buyer
+     * @param renterId id of the renter
+     */
     protected Invoice(int buyerId, int renterId)
     {
        this.buyerId = buyerId;
@@ -31,6 +47,11 @@ public class Invoice extends Serializable
        this.status = PaymentStatus.WAITING;
     }
 
+    /**
+     * Invoice Constructor
+     * @param buyer account of the buyer
+     * @param renter Renter of the renter
+     */
     public Invoice(Account buyer, Renter renter)
     {
         this.buyerId = buyer.id;

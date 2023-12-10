@@ -1,5 +1,9 @@
 package com.darrenNathanaelBoentaraJBusIO;
 
+/**
+ * This class is used to store the bus price information
+ * @author Darren Nathanael
+ */
 public class Price
 {
     public double rebate;
@@ -26,7 +30,11 @@ public class Price
         this.rebate = rebate;
         //this.discount = 0;
     }
-    
+
+    /**
+     * This method is used to get the price of a room
+     * @return String of price and discount
+     */
     public String toString()
     {
         return "Price: " + this.price +", Rebate: " + this.rebate +"\n"; 

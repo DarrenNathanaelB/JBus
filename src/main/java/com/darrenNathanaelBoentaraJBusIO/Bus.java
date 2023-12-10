@@ -4,7 +4,11 @@ import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.Timestamp;
-
+/**
+ * This class is used to store the bus information.
+ * @author Darren Nathanael
+ * @see Serializable
+ */
 public class Bus extends Serializable
 {
     public int capacity;

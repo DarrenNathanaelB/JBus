@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * This class handles HTTP requests related to station operations,
+ * such as creating new stations and retrieving all stations.
+ *
+ * @author Darren Nathanael
+ */
 @RestController
 @RequestMapping("/station")
 public class StationController implements BasicGetController<Station> {
@@ -18,7 +24,14 @@ public class StationController implements BasicGetController<Station> {
         return stationTable;
     }
 
-    //Add new Station
+    /**
+     * Creates a new station with the provided details.
+     *
+     * @param stationName The name of the station.
+     * @param city         The city where the station is located.
+     * @param address      The address of the station.
+     * @return A response indicating the success or failure of the station creation.
+     */
     @PostMapping("/create")
     public BaseResponse<Station> createStation(
             @RequestParam String stationName,
@@ -50,6 +63,11 @@ public class StationController implements BasicGetController<Station> {
             return new BaseResponse<>(false, "An error occurred while adding the station", null);
         }
     }
+    /**
+     * Retrieves a list of all stations.
+     *
+     * @return A list containing all stations.
+     */
     @GetMapping("/getAll")
     public List<Station> getAllStation() { return getJsonTable();}
 }

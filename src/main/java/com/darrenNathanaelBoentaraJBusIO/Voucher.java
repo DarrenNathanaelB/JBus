@@ -2,6 +2,11 @@ package com.darrenNathanaelBoentaraJBusIO;
 
 import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
 
+/**
+ * This class is used to store the information of the voucher
+ * @author Darren Nathanael
+ * @see Serializable
+ */
 public class Voucher extends Serializable
 {
     public String name;
@@ -21,6 +26,10 @@ public class Voucher extends Serializable
         this.used = false;
     }
 
+    /**
+     * method that is used to know if the voucher is used or not
+     * @return true if it is used, false if it is not
+     */
     public boolean isUsed()
     {
         return this.used;
@@ -35,7 +44,12 @@ public class Voucher extends Serializable
             return false;
         }
     }
-    
+
+    /**
+     * method that is used to apply the voucher
+     * @param price price of the bus ticket
+     * @return price after the voucher is applied
+     */
     public double apply (Price price)
     {
         this.used = true;

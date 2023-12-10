@@ -7,6 +7,11 @@ import java.util.LinkedHashMap;
 import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
 
+
+/**
+ * This class is used to store the schedule of the bus
+ * @author Darren Nathanael
+ */
 public class Schedule
 {
     public Timestamp departureSchedule;
@@ -18,6 +23,9 @@ public class Schedule
         initializaSeatAvailability(numberOfSeats);
     }
 
+    /**
+     * This method is used initialize the seat avaibility of the bus
+     */
     private void initializaSeatAvailability(int numberOfSeats)
     {
         seatAvailability = new LinkedHashMap();
@@ -26,12 +34,17 @@ public class Schedule
             seatAvailability.put("IO" + sn, true);
         }
     }
-    
+
+    /**
+     * This method is used to book the bus seat
+     */
     public void bookSeat(String seat)
     {
        this.seatAvailability.put(seat, false);    
     }
-    
+    /**
+     * This method is used to check if the seat is available or not
+     */
     public boolean isSeatAvailable(String seat)
     {
         if (seatAvailability.containsKey(seat)) {
@@ -42,6 +55,9 @@ public class Schedule
         }
     }
 
+    /**
+     * This method is used to check if the seat is available or not
+     */
     public boolean isSeatAvailable(List<String> seats)
     {
         for (String seat : seats){
@@ -61,6 +77,9 @@ public class Schedule
         }
     }
 
+    /**
+     * This method is used to print the schedule and the seat information
+     */
     public void printSchedule(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy HH:mm:ss");
         String formattedDepartureSchedule = dateFormat.format(this.departureSchedule.getTime());

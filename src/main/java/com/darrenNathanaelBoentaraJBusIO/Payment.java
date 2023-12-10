@@ -6,6 +6,11 @@ import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * This class is used to store the Payment information
+ * @author Darren Nathanel
+ * @see Invoice
+ */
 public class Payment extends Invoice
 {
     private int busId;
@@ -33,6 +38,10 @@ public class Payment extends Invoice
         return "Id: " + this.id +" Buyer Id: " + this.buyerId + " Renter Id: " + this.renterId + " time: "+ this.time + " Bus Id: " + this.busId + " date: " + this.departureDate + " seat: " + this.busSeat;
     }*/
 
+    /**
+     * This is the method to get the bus id.
+     * @author Darren Nathanael
+     */
     public int getBusId()
     {
         return busId;
@@ -47,7 +56,10 @@ public class Payment extends Invoice
         }
         return false;
     }*/
-
+    /**
+     * This is the method to makeBooking of the bus.
+     * @author Darren Nathanael
+     */
     public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus)
     {
             for (Schedule schedule : bus.schedules){
@@ -61,6 +73,10 @@ public class Payment extends Invoice
         return false;
     }
 
+    /**
+     * This is the method to get the departure info.
+     * @author Darren Nathanael
+     */
     public String getDepartureInfo()
     {
         SimpleDateFormat SDFormat
@@ -69,6 +85,10 @@ public class Payment extends Invoice
         return "Id: " + this.id +" Buyer Id: " + this.buyerId + " Renter Id: " + this.renterId + " Bus Id: " + this.busId + " Departure Date: " + departDate + " Seat: " + this.busSeats;
     }
 
+    /**
+     * This is the method to get the time.
+     * @author Darren Nathanael
+     */
     public String getTime(){
         SimpleDateFormat SDFormat
             = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss");
@@ -76,6 +96,10 @@ public class Payment extends Invoice
         return "Payment Time: " + currDate;
     }
 
+    /**
+     * This is the method to check the available schedule.
+     * @author Darren Nathanael
+     */
     public static Schedule availableSchedule(Timestamp departureSchedule, String seat, Bus bus) {
         for (Schedule schedule : bus.schedules) {
             if (schedule.departureSchedule.equals(departureSchedule) && schedule.isSeatAvailable(seat)) {
@@ -85,6 +109,10 @@ public class Payment extends Invoice
         return null;
     }
 
+    /**
+     * This is the method to check the available schedule.
+     * @author Darren Nathanael
+     */
     public static List<Schedule> availableSchedule(Timestamp departureSchedule, List<String> seats, Bus bus) {
         List<Schedule> availableSchedules = new ArrayList<>();
         for (String seat : seats) {
@@ -96,6 +124,10 @@ public class Payment extends Invoice
         return availableSchedules;
     }
 
+    /**
+     * This is the method to make booking.
+     * @author Darren Nathanael
+     */
     public static boolean makeBooking(Timestamp departureSchedule, List<String> seats, Bus bus) {
         boolean allBooked = true;
         for (String seat : seats) {

@@ -8,6 +8,10 @@ import com.darrenNathanaelBoentaraJBusIO.dbjson.JsonTable;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * This class is used to run the backend server.
+ * @author Darren Nathanael
+ */
 @SpringBootApplication
 public class JBus {
     public static void main(String[] args) throws InterruptedException {

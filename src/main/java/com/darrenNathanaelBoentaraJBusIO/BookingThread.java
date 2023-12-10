@@ -1,6 +1,14 @@
 package com.darrenNathanaelBoentaraJBusIO;
 
+import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
+
 import java.sql.Timestamp;
+
+/**
+ * This class is used for booking using thread.
+ * @author Darren Nathanael
+ * @see Thread
+ */
 public class BookingThread extends Thread{
     private Bus bus;
     private Timestamp timestamp ;

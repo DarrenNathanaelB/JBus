@@ -15,12 +15,28 @@ import static com.darrenNathanaelBoentaraJBusIO.Algorithm.exists;
 import static com.darrenNathanaelBoentaraJBusIO.Algorithm.find;
 import static com.darrenNathanaelBoentaraJBusIO.controller.BusController.busTable;
 
+/**
+ * This class handles HTTP requests related to payment operations,
+ * including making bookings, accepting payments, canceling payments, and retrieving booked buses.
+ *
+ * @author Darren Nathanael
+ */
 @RestController
 @RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
     @JsonAutowired(value = Payment.class, filepath = "src\\main\\java\\com\\darrenNathanaelBoentaraJBusIO\\json\\payment.json")
     public static JsonTable<Payment> paymentTable;
 
+    /**
+     * Makes a booking for a bus.
+     *
+     * @param buyerId       The ID of the buyer account.
+     * @param renterId      The ID of the renter account.
+     * @param busId         The ID of the bus.
+     * @param busSeats      The list of booked bus seats.
+     * @param departureDate The departure date of the bus.
+     * @return A response indicating the success or failure of the booking.
+     */
     @PostMapping("/makeBooking")
     public BaseResponse<Payment> makeBooking(
             @RequestParam int buyerId,
@@ -54,6 +70,12 @@ public class PaymentController implements BasicGetController<Payment> {
         }
     }
 
+    /**
+     * Accepts a payment by updating the payment status to SUCCESS.
+     *
+     * @param id The ID of the payment to accept.
+     * @return A response indicating the success or failure of the payment acceptance.
+     */
     @RequestMapping(value = "/{id}/accept", method = RequestMethod.POST)
     BaseResponse<Payment> accept(@PathVariable int id){
         if (!(Algorithm.<Payment>exists(paymentTable, x -> x.id == id))){
@@ -69,6 +91,12 @@ public class PaymentController implements BasicGetController<Payment> {
         return new BaseResponse<>(true, "Payment Successful", newPayment);
     }
 
+    /**
+     * Cancels a payment by updating the payment status to FAILED.
+     *
+     * @param id The ID of the payment to cancel.
+     * @return A response indicating the success or failure of the payment cancellation.
+     */
     @RequestMapping(value = "/{id}/cancel", method = RequestMethod.POST)
     BaseResponse<Payment> cancel(@PathVariable int id){
         if (!(Algorithm.<Payment>exists(paymentTable, x -> x.id == id))){
@@ -80,10 +108,21 @@ public class PaymentController implements BasicGetController<Payment> {
         return new BaseResponse<>(true, "Payment Canceled", newPayment);
     }
 
+    /**
+     * Retrieves booked buses for a specific buyer account.
+     *
+     * @param buyerId The ID of the buyer account.
+     * @return A list of payments representing booked buses for the buyer account.
+     */
     @GetMapping("/getBookedBusById")
     public List<Payment> getBookedBusById(@RequestParam int buyerId) {
         return Algorithm.<Payment>collect(getJsonTable(), t->t.buyerId == buyerId);}
 
+    /**
+     * Gets the JSON table associated with the Payment entity.
+     *
+     * @return The JSON table for the Payment entity.
+     */
     public JsonTable<Payment> getJsonTable(){
         return paymentTable;
     }

@@ -1,7 +1,13 @@
 package com.darrenNathanaelBoentaraJBusIO;
 
+import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
+
 import java.util.*;
 
+/**
+ * This class is used for algorithm that can be used for this application
+ * @author Darren Nathanael
+ */
 public class Algorithm {
     private Algorithm() {
     }

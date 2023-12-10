@@ -2,6 +2,11 @@ package com.darrenNathanaelBoentaraJBusIO;
 
 import com.darrenNathanaelBoentaraJBusIO.dbjson.Serializable;
 
+/**
+ * This class is used to store the information of the station
+ * @author Darren Nathanael
+ * @see Serializable
+ */
 public class Station extends Serializable
 {
     public City city;
