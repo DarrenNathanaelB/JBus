@@ -17,15 +17,14 @@ public class Bus extends Serializable
     public List<Schedule> schedules;
     public int accountId;
 
-    public Bus(String name, List<Facility> facilities, Price price, int capacity, BusType busType, Station departure, Station arrival)
+    public Bus(int accountId, String name, List<Facility> facilities, Price price, int capacity, BusType busType, Station departure, Station arrival)
     {
         super();
-        this.accountId = super.id;
+        this.accountId = accountId;
         this.capacity = capacity;
         this.facilities = facilities;
         this.name = name;
         this.price = price;
-        
         this.schedules = new ArrayList<>();
         this.busType = busType;
         this.departure = departure;
@@ -35,13 +34,13 @@ public class Bus extends Serializable
         try {
             for (Schedule existingSchedule : schedules) {
                 if (existingSchedule.departureSchedule.equals(schedule)) {
-                    System.out.println("Jadwal Yang Dimasukkan Duplikat!");
+                    System.out.println("Duplicated Schedule!");
                     return;
                 }
             }
             schedules.add(new Schedule(schedule, this.capacity));
         } catch (Exception e) {
-            System.out.println("Ditemukan Error Ketika Menambahkan Jadwal: " + e.getMessage());
+            System.out.println("Error Found: " + e.getMessage());
         }
     }
     public String toString()

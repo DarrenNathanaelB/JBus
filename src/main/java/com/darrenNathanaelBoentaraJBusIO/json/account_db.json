@@ -1,1 +1,62 @@
-[{"email":"darren@ui.ac.id","name":"Darren_nb30","password":"2bf6bd3d2a6fb60a4fceaf344dcd4613","company":{"address":"123456789","companyName":"Netlab","phoneNumber":"Jl. Sudirman No.4","REGEX_PHONE":"\\d{9,12}$","REGEX_NAME":"^[A-Z][A-Z0-9_]{3,19}$","id":1},"balance":0.0,"id":1},{"email":"nathanael@ui.ac.id","name":"Darren_nb31","password":"d60c03f75b6cfb3555906e61c1766a4e","company":{"address":"123456789","companyName":"Netlab","phoneNumber":"Jl. Sudirman No.4","REGEX_PHONE":"\\d{9,12}$","REGEX_NAME":"^[A-Z][A-Z0-9_]{3,19}$","id":0},"balance":0.0,"id":2}]
+[
+  {
+    "email": "darren@ui.ac.id",
+    "name": "Darren_nb30",
+    "password": "2bf6bd3d2a6fb60a4fceaf344dcd4613",
+    "company": {
+      "address": "123456789",
+      "companyName": "Netlab",
+      "phoneNumber": "Jl. Sudirman No.4",
+      "REGEX_PHONE": "\\d{9,12}$",
+      "REGEX_NAME": "^[A-Z][A-Z0-9_]{3,19}$",
+      "id": 1
+    },
+    "balance": 0.0,
+    "id": 1
+  },
+  {
+    "email": "nathanael@ui.ac.id",
+    "name": "Darren_nb31",
+    "password": "d60c03f75b6cfb3555906e61c1766a4e",
+    "company": {
+      "address": "123456789",
+      "companyName": "Netlab",
+      "phoneNumber": "Jl. Sudirman No.4",
+      "REGEX_PHONE": "\\d{9,12}$",
+      "REGEX_NAME": "^[A-Z][A-Z0-9_]{3,19}$",
+      "id": 0
+    },
+    "balance": 0.0,
+    "id": 2
+  },
+  {
+    "email": "darren@gmail.com",
+    "name": "darren",
+    "password": "16e85b0f5ee55315abdacdffa8cc234e",
+    "company": {
+      "address": "Jl. Sudirman No.5",
+      "companyName": "Manjur",
+      "phoneNumber": "087717228",
+      "REGEX_PHONE": "\\d{9,12}$",
+      "REGEX_NAME": "^[A-Z][A-Z0-9_]{3,19}$",
+      "id": 0
+    },
+    "balance": 450000.0,
+    "id": 3
+  },
+  {
+    "email": "jesslyn@gmail.com",
+    "name": "jesslyn",
+    "password": "16e85b0f5ee55315abdacdffa8cc234e",
+    "company": {
+      "address": "Jl. Diponegoro",
+      "companyName": "Laris Makmur",
+      "phoneNumber": "087766554",
+      "REGEX_PHONE": "\\d{9,12}$",
+      "REGEX_NAME": "^[A-Z][A-Z0-9_]{3,19}$",
+      "id": 0
+    },
+    "balance": 5000000.0,
+    "id": 4
+  }
+]

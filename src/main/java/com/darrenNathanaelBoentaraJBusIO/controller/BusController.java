@@ -5,6 +5,7 @@ import com.darrenNathanaelBoentaraJBusIO.dbjson.JsonAutowired;
 import com.darrenNathanaelBoentaraJBusIO.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -24,25 +25,14 @@ public class BusController implements BasicGetController<Bus>{
             @RequestParam int busId,
             @RequestParam String time
     ){
-        Predicate<Bus> s = (val) -> val.id == busId;
-        Bus tmp = Algorithm.find(busTable,s);
-        if (tmp != null) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy HH:mm:ss");
-            Timestamp departureDate = Timestamp.valueOf(time);
-            tmp.addSchedule(departureDate);
-            return new BaseResponse<>(true, "Berhasil addSchedule", tmp);
-            /*
-            try {
-                Date date = dateFormat.parse(time);
-                Timestamp departureDate = new Timestamp(date.getTime());
-                tmp.addSchedule(departureDate);
-                return new BaseResponse<>(true, "Berhasil addSchedule", tmp);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            */
+        try {
+            Bus newBus = Algorithm.<Bus>find(busTable, t -> t.id == busId);
+            newBus.addSchedule(Timestamp.valueOf(time));
+            return new BaseResponse<>(true, "Jadwal berhasil ditambahkan", newBus);
+
+        } catch (Exception e) {
+            return new BaseResponse<>(false, "Jadwal tidak berhasil ditambahkan", null);
         }
-        return new BaseResponse<>(false, "Gagal addSchedule", null);
     }
 
     @PostMapping("/create")
@@ -56,23 +46,43 @@ public class BusController implements BasicGetController<Bus>{
             @RequestParam int stationDepartureId,
             @RequestParam int stationArrivalId
     ){
-        if(Algorithm.<Bus>exists(busTable, a -> a.arrival.id == stationArrivalId) && Algorithm.<Bus>exists(busTable, a -> a.departure.id == stationDepartureId)) {
-            Account account = Algorithm.<Account>find(AccountController.accountTable, a -> a.id == accountId);
-            if (account != null) {
-                if (account.company != null) {
-                    Bus bus = Algorithm.<Bus>find(busTable, a -> a.arrival.id == stationArrivalId && a.departure.id == stationDepartureId);
-                    Price priceObj = new Price(price);
-                    Bus createdBus = new Bus(name, facilities, priceObj, capacity, busType, bus.departure, bus.arrival);
-                    return new BaseResponse<>(true, "Bus Telah Berhasil Dibuat", createdBus);
-                } else
-                    return new BaseResponse<>(false, "Gagal Dibuat Karena Bukan Merupakan Renter", null);
+        try{
+            Account account = Algorithm.<Account>find(AccountController.accountTable, acc -> acc.id == accountId);
+            if (account == null || account.company == null) {
+                return new BaseResponse<>(false, "No Account Found", null);
             }
-            return new BaseResponse<>(false, "Gagal Dibuat Karena Tidak Menemukan Account Dengan ID Yang Sesuai", null);
-        } return new BaseResponse<>(false, "Gagal Dibuat karena Tidak Terdapat ID Departure atau Arrival", null);
+            Station stationDep = Algorithm.<Station>find(StationController.stationTable, stat -> stat.id == stationDepartureId);
+            Station stationArr = Algorithm.<Station>find(StationController.stationTable, stat -> stat.id == stationArrivalId);
+            if(stationDep == null || stationArr == null){
+                return new BaseResponse<>(false, "Cannot Find Station", null);
+            }
+
+            Bus newbus = new Bus(
+                    accountId,
+                    name,
+                    facilities,
+                    new Price(price),
+                    capacity,
+                    busType,
+                    stationDep,
+                    stationArr
+            );
+            busTable.add(newbus);
+            busTable.writeJson();
+            return new BaseResponse<>(true, "Bus Added!", newbus);}
+        catch (IllegalArgumentException | IOException e){
+            return new BaseResponse<>(false, "Bus Fail To Be Add!",null);
+        }
     }
 
     @GetMapping("/getMyBus")
     public List<Bus> getMyBus(@RequestParam int accountId) {
-        return Algorithm.<Bus>collect(getJsonTable(),
-                b->b.accountId==accountId);}
+        return Algorithm.<Bus>collect(getJsonTable(), b->b.accountId==accountId);}
+
+    @GetMapping("/getBusbyId")
+    public List<Bus> getBusbyId(@RequestParam int busId) {
+        return Algorithm.<Bus>collect(getJsonTable(), t -> t.id == busId);}
+
+    @GetMapping("/getAll")
+    public List<Bus> getAllBus() { return getJsonTable();}
 }
